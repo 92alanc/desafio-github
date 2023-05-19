@@ -45,7 +45,9 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
 
+    implementation "$android_activity"
     implementation "$android_appcompat"
+    implementation "$android_fragment"
     implementation "$android_material"
     implementation "$hilt_android"
     implementation "$room"
