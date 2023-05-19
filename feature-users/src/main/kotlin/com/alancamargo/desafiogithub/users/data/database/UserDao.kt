@@ -18,9 +18,6 @@ interface UserDao {
     @Update(entity = DbUser::class)
     suspend fun updateUser(user: DbUser)
 
-    @Query("DELETE FROM USERS")
-    suspend fun deleteUsers()
-
     @Query("SELECT COUNT() FROM USERS WHERE userName = :userName")
     suspend fun getUserCount(userName: String): Int
 }
