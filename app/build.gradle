@@ -47,8 +47,6 @@ android {
 dependencies {
     implementation project(':core-design')
 
-    implementation "$android_core"
-    implementation "$android_material"
     implementation "$hilt_android"
 
     kapt "$hilt_compiler"

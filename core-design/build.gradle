@@ -23,8 +23,6 @@ android {
 }
 
 dependencies {
-    //implementation project(':core')
-
     implementation "$android_material"
     implementation "$coil"
     implementation "$hilt_android"
