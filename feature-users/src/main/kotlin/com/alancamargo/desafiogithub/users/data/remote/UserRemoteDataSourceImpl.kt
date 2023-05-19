@@ -1,7 +1,9 @@
 package com.alancamargo.desafiogithub.users.data.remote
 
+import com.alancamargo.desafiogithub.data.repository.mapping.data.toDomain
 import com.alancamargo.desafiogithub.data.user.mapping.data.toDomain
 import com.alancamargo.desafiogithub.data.usersummary.mapping.data.toDomain
+import com.alancamargo.desafiogithub.domain.repository.model.Repository
 import com.alancamargo.desafiogithub.domain.user.model.User
 import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 import com.alancamargo.desafiogithub.users.data.api.UserApi
@@ -34,6 +36,18 @@ internal class UserRemoteDataSourceImpl @Inject constructor(
                 HttpURLConnection.HTTP_NOT_FOUND -> null
                 else -> throw Throwable()
             }
+        }
+    }
+
+    override suspend fun getUserRepositories(ownerUserName: String): List<Repository> {
+        val response = userApi.getUserRepositories(ownerUserName)
+
+        return if (response.isSuccessful) {
+            response.body()?.map {
+                it.toDomain()
+            } ?: emptyList()
+        } else {
+            emptyList()
         }
     }
 }

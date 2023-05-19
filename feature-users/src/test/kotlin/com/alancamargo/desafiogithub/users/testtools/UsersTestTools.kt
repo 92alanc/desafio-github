@@ -1,5 +1,7 @@
 package com.alancamargo.desafiogithub.users.testtools
 
+import com.alancamargo.desafiogithub.data.repository.mapping.data.toDomain
+import com.alancamargo.desafiogithub.data.repository.model.remote.RepositoryResponse
 import com.alancamargo.desafiogithub.data.user.mapping.data.toDomain
 import com.alancamargo.desafiogithub.data.user.mapping.domain.toDb
 import com.alancamargo.desafiogithub.data.user.model.remote.UserResponse
@@ -45,3 +47,23 @@ fun stubUserSummary() = UserSummary(
 )
 
 fun stubDbUserSummary() = stubUserSummary().toDb()
+
+fun stubRepositoryResponseList() = listOf(
+    RepositoryResponse(
+        id = 1L,
+        name = "the-office",
+        description = "First edition of The Office",
+        owner = stubUserSummaryResponse(),
+        starCount = 5,
+        watcherCount = 999,
+        forkCount = 3,
+        language = "Kotlin"
+    )
+)
+
+fun stubRepositoryList() = stubRepositoryResponseList().map { it.toDomain() }
+
+private fun stubUserSummaryResponse() = UserSummaryResponse(
+    userName = "ricky_gervais",
+    profilePictureUrl = "https://test.com/ricky-gervais.png"
+)

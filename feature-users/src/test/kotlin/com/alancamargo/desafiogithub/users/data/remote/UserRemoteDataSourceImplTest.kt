@@ -1,6 +1,8 @@
 package com.alancamargo.desafiogithub.users.data.remote
 
 import com.alancamargo.desafiogithub.users.data.api.UserApi
+import com.alancamargo.desafiogithub.users.testtools.stubRepositoryList
+import com.alancamargo.desafiogithub.users.testtools.stubRepositoryResponseList
 import com.alancamargo.desafiogithub.users.testtools.stubUser
 import com.alancamargo.desafiogithub.users.testtools.stubUserResponse
 import com.alancamargo.desafiogithub.users.testtools.stubUserSummaryList
@@ -113,5 +115,48 @@ class UserRemoteDataSourceImplTest {
 
         // THEN
         runBlocking { remoteDataSource.getUser(userName = "user") }
+    }
+
+    @Test
+    fun `when api responds with success getUserRepositories should return user repositories`() {
+        // GIVEN
+        coEvery {
+            mockApi.getUserRepositories(ownerUserName = any())
+        } returns Response.success(stubRepositoryResponseList())
+
+        // WHEN
+        val actual = runBlocking { remoteDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        val expected = stubRepositoryList()
+        assertThat(actual).containsExactlyElementsIn(expected)
+    }
+
+    @Test
+    fun `when api responds with null body getUserRepositories should return empty list`() {
+        // GIVEN
+        coEvery {
+            mockApi.getUserRepositories(ownerUserName = any())
+        } returns Response.success(null)
+
+        // WHEN
+        val actual = runBlocking { remoteDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        assertThat(actual).isEmpty()
+    }
+
+    @Test
+    fun `when api responds with error getUserRepositories should return empty list`() {
+        // GIVEN
+        coEvery {
+            mockApi.getUserRepositories(ownerUserName = any())
+        } returns Response.error(404, "".toResponseBody())
+
+        // WHEN
+        val actual = runBlocking { remoteDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        assertThat(actual).isEmpty()
     }
 }
