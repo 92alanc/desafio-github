@@ -6,6 +6,8 @@ import com.alancamargo.desafiogithub.users.data.remote.UserRemoteDataSource
 import com.alancamargo.desafiogithub.users.data.remote.UserRemoteDataSourceImpl
 import com.alancamargo.desafiogithub.users.data.repository.UserRepositoryImpl
 import com.alancamargo.desafiogithub.users.domain.repository.UserRepository
+import com.alancamargo.desafiogithub.users.domain.usecase.GetUserUseCase
+import com.alancamargo.desafiogithub.users.domain.usecase.GetUserUseCaseImpl
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUsersUseCase
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUsersUseCaseImpl
 import dagger.Binds
@@ -33,4 +35,8 @@ internal abstract class UsersModule {
     @Binds
     @ViewModelScoped
     abstract fun bindGetUsersUseCase(impl: GetUsersUseCaseImpl): GetUsersUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindGetUserUseCase(impl: GetUserUseCaseImpl): GetUserUseCase
 }
