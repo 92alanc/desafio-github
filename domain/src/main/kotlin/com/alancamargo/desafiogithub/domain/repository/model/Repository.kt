@@ -1,4 +1,6 @@
-package com.alancamargo.desafiogithub.domain
+package com.alancamargo.desafiogithub.domain.repository.model
+
+import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 
 data class Repository(
     val id: Long,

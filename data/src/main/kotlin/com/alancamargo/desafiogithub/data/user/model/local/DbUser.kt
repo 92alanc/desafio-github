@@ -1,7 +1,11 @@
-package com.alancamargo.desafiogithub.domain
+package com.alancamargo.desafiogithub.data.user.model.local
 
-data class User(
-    val userName: String,
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "USERS")
+data class DbUser(
+    @PrimaryKey val userName: String,
     val profilePictureUrl: String,
     val name: String,
     val bio: String,
