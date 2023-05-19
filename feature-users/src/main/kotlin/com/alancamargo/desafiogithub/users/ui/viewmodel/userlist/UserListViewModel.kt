@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alancamargo.desafiogithub.core.di.IoDispatcher
 import com.alancamargo.desafiogithub.core.log.Logger
+import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 import com.alancamargo.desafiogithub.users.domain.model.UserSummaryListResult
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUsersUseCase
-import com.alancamargo.desafiogithub.users.ui.mapping.toUi
-import com.alancamargo.desafiogithub.users.ui.model.UiUserSummary
 import com.alancamargo.desafiogithub.users.ui.model.UserListError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -48,9 +47,9 @@ internal class UserListViewModel @Inject constructor(
         }
     }
 
-    fun onClickUser(user: UiUserSummary) {
+    fun onClickUser(user: UserSummary) {
         viewModelScope.launch(dispatcher) {
-            _action.emit(UserListViewAction.OpenUserDetails(user))
+            _action.emit(UserListViewAction.OpenUserDetails(user.userName))
         }
     }
 
@@ -62,21 +61,20 @@ internal class UserListViewModel @Inject constructor(
 
     private fun handleResult(result: UserSummaryListResult) {
         when (result) {
-            is UserSummaryListResult.Success -> {
-                val users = result.users.map { it.toUi() }
-                _state.update { it.onUsersReceived(users) }
+            is UserSummaryListResult.Success -> _state.update {
+                it.onUsersReceived(result.users)
             }
 
-            is UserSummaryListResult.Empty -> {
-                _state.update { it.onError(UserListError.NO_RESULTS) }
+            is UserSummaryListResult.Empty -> _state.update {
+                it.onError(UserListError.NO_RESULTS)
             }
 
-            is UserSummaryListResult.NetworkError -> {
-                _state.update { it.onError(UserListError.NETWORK_ERROR) }
+            is UserSummaryListResult.NetworkError -> _state.update {
+                it.onError(UserListError.NETWORK_ERROR)
             }
 
-            is UserSummaryListResult.GenericError -> {
-                _state.update { it.onError(UserListError.GENERIC_ERROR) }
+            is UserSummaryListResult.GenericError -> _state.update {
+                it.onError(UserListError.GENERIC_ERROR)
             }
         }
     }

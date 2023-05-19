@@ -4,7 +4,7 @@ import com.alancamargo.desafiogithub.core.log.Logger
 import com.alancamargo.desafiogithub.core.test.viewmodel.ViewModelFlowCollector
 import com.alancamargo.desafiogithub.users.domain.model.UserSummaryListResult
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUsersUseCase
-import com.alancamargo.desafiogithub.users.testtools.stubUiUserSummary
+import com.alancamargo.desafiogithub.users.testtools.stubUserSummary
 import com.alancamargo.desafiogithub.users.ui.model.UserListError
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
@@ -74,11 +74,11 @@ class UserListViewModelTest {
     fun `onClickUser should send OpenUserDetails action`() {
         collector.test { _, actions ->
             // WHEN
-            val user = stubUiUserSummary()
+            val user = stubUserSummary()
             viewModel.onClickUser(user)
 
             // THEN
-            val expected = UserListViewAction.OpenUserDetails(user)
+            val expected = UserListViewAction.OpenUserDetails(user.userName)
             assertThat(actions).contains(expected)
         }
     }
