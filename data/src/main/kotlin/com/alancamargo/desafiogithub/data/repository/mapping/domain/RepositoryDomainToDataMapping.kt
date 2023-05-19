@@ -8,8 +8,5 @@ fun Repository.toDb() = DbRepository(
     name = name,
     description = description,
     ownerUserName = ownerUserName,
-    starCount = starCount,
-    watcherCount = watcherCount,
-    forkCount = forkCount,
     language = language
 )

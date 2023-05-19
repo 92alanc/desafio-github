@@ -9,9 +9,6 @@ fun RepositoryResponse.toDomain() = Repository(
     name = name,
     description = description,
     ownerUserName = owner.userName,
-    starCount = starCount,
-    watcherCount = watcherCount,
-    forkCount = forkCount,
     language = language
 )
 
@@ -20,8 +17,5 @@ fun DbRepository.toDomain() = Repository(
     name = name,
     description = description,
     ownerUserName = ownerUserName,
-    starCount = starCount,
-    watcherCount = watcherCount,
-    forkCount = forkCount,
     language = language
 )
