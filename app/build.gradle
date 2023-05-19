@@ -17,8 +17,6 @@ android {
 
         versionCode version_code
         versionName "$version_name"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
