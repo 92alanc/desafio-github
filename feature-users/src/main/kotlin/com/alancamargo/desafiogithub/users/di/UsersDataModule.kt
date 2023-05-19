@@ -5,6 +5,7 @@ import com.alancamargo.desafiogithub.core.network.ApiProvider
 import com.alancamargo.desafiogithub.users.data.api.UserApi
 import com.alancamargo.desafiogithub.users.data.database.UserDao
 import com.alancamargo.desafiogithub.users.data.database.UserDatabase
+import com.alancamargo.desafiogithub.users.data.database.UserRepositoryDao
 import com.alancamargo.desafiogithub.users.data.database.UserSummaryDao
 import dagger.Module
 import dagger.Provides
@@ -41,5 +42,11 @@ internal object UsersDataModule {
     @Singleton
     fun provideUserDao(userDatabase: UserDatabase): UserDao {
         return userDatabase.provideUserDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepositoryDao(userDatabase: UserDatabase): UserRepositoryDao {
+        return userDatabase.provideUserRepositoryDao()
     }
 }
