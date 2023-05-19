@@ -12,15 +12,15 @@ internal class UserRemoteDataSourceImpl @Inject constructor(
     private val userApi: UserApi
 ) : UserRemoteDataSource {
 
-    override suspend fun getUsers(): List<UserSummary>? {
+    override suspend fun getUsers(): List<UserSummary> {
         val response = userApi.getUsers()
 
         return if (response.isSuccessful) {
             response.body()?.map {
                 it.toDomain()
-            }
+            } ?: emptyList()
         } else {
-            null
+            emptyList()
         }
     }
 

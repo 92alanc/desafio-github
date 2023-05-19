@@ -6,6 +6,7 @@ import com.alancamargo.desafiogithub.data.user.model.remote.UserResponse
 import com.alancamargo.desafiogithub.data.usersummary.mapping.data.toDomain
 import com.alancamargo.desafiogithub.data.usersummary.mapping.domain.toDb
 import com.alancamargo.desafiogithub.data.usersummary.model.remote.UserSummaryResponse
+import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 
 fun stubUserSummaryResponseList() = listOf(
     UserSummaryResponse(
@@ -37,3 +38,10 @@ fun stubUser() = stubUserResponse().toDomain()
 fun stubDbUserSummaryList() = stubUserSummaryList().map { it.toDb() }
 
 fun stubDbUser() = stubUser().toDb()
+
+fun stubUserSummary() = UserSummary(
+    userName = "ricky_gervais",
+    profilePictureUrl = "https://test.com/ricky-gervais.png"
+)
+
+fun stubDbUserSummary() = stubUserSummary().toDb()

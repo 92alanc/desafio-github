@@ -5,7 +5,7 @@ import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 
 internal interface UserRemoteDataSource {
 
-    suspend fun getUsers(): List<UserSummary>?
+    suspend fun getUsers(): List<UserSummary>
 
     suspend fun getUser(userName: String): User?
 }

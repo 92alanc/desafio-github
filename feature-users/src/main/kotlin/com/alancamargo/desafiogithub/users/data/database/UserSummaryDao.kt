@@ -20,4 +20,7 @@ internal interface UserSummaryDao {
 
     @Query("DELETE FROM USER_SUMMARIES")
     suspend fun deleteUserSummaries()
+
+    @Query("SELECT COUNT() FROM USER_SUMMARIES WHERE userName = :userName")
+    suspend fun getUserCount(userName: String): Int
 }

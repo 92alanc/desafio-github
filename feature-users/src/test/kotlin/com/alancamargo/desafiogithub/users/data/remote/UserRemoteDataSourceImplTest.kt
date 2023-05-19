@@ -34,7 +34,7 @@ class UserRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `when api responds with null body getUsers should return null`() {
+    fun `when api responds with null body getUsers should return empty list`() {
         // GIVEN
         coEvery {
             mockApi.getUsers()
@@ -44,11 +44,11 @@ class UserRemoteDataSourceImplTest {
         val actual = runBlocking { remoteDataSource.getUsers() }
 
         // THEN
-        assertThat(actual).isNull()
+        assertThat(actual).isEmpty()
     }
 
     @Test
-    fun `when api responds with error getUsers should return null`() {
+    fun `when api responds with error getUsers should return empty list`() {
         // GIVEN
         coEvery {
             mockApi.getUsers()
@@ -58,7 +58,7 @@ class UserRemoteDataSourceImplTest {
         val actual = runBlocking { remoteDataSource.getUsers() }
 
         // THEN
-        assertThat(actual).isNull()
+        assertThat(actual).isEmpty()
     }
 
     @Test

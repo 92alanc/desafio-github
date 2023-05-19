@@ -10,7 +10,7 @@ import com.alancamargo.desafiogithub.data.user.model.local.DbUser
 interface UserDao {
 
     @Query("SELECT * FROM USERS WHERE userName = :userName")
-    suspend fun selectUser(userName: String): DbUser
+    suspend fun selectUser(userName: String): DbUser?
 
     @Insert(entity = DbUser::class)
     suspend fun insertUser(user: DbUser)
@@ -20,4 +20,7 @@ interface UserDao {
 
     @Query("DELETE FROM USERS")
     suspend fun deleteUsers()
+
+    @Query("SELECT COUNT() FROM USERS WHERE userName = :userName")
+    suspend fun getUserCount(userName: String): Int
 }
