@@ -7,6 +7,7 @@ import com.alancamargo.desafiogithub.data.usersummary.mapping.data.toDomain
 import com.alancamargo.desafiogithub.data.usersummary.mapping.domain.toDb
 import com.alancamargo.desafiogithub.data.usersummary.model.remote.UserSummaryResponse
 import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
+import com.alancamargo.desafiogithub.users.ui.mapping.toUi
 
 fun stubUserSummaryResponseList() = listOf(
     UserSummaryResponse(
@@ -45,3 +46,5 @@ fun stubUserSummary() = UserSummary(
 )
 
 fun stubDbUserSummary() = stubUserSummary().toDb()
+
+internal fun stubUiUserSummary() = stubUserSummary().toUi()

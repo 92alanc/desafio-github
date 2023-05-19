@@ -3,6 +3,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -49,6 +50,9 @@ dependencies {
     kapt "$hilt_compiler"
     kapt "$room_compiler"
 
+    testImplementation project(':core-test')
+
+    testImplementation "$coroutines_test"
     testImplementation "$junit"
     testImplementation "$mockk_android"
     testImplementation "$truth"
