@@ -10,7 +10,7 @@ import com.alancamargo.desafiogithub.data.repository.model.local.DbRepository
 internal interface UserRepositoryDao {
 
     @Query("SELECT * FROM REPOSITORIES WHERE ownerUserName = :ownerUserName")
-    suspend fun getUserRepositories(ownerUserName: String): List<DbRepository>?
+    suspend fun selectUserRepositories(ownerUserName: String): List<DbRepository>?
 
     @Insert(entity = DbRepository::class)
     suspend fun insertRepository(repository: DbRepository)

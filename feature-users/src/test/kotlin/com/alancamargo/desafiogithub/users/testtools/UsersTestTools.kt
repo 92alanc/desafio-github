@@ -1,6 +1,7 @@
 package com.alancamargo.desafiogithub.users.testtools
 
 import com.alancamargo.desafiogithub.data.repository.mapping.data.toDomain
+import com.alancamargo.desafiogithub.data.repository.mapping.domain.toDb
 import com.alancamargo.desafiogithub.data.repository.model.remote.RepositoryResponse
 import com.alancamargo.desafiogithub.data.user.mapping.data.toDomain
 import com.alancamargo.desafiogithub.data.user.mapping.domain.toDb
@@ -62,6 +63,12 @@ fun stubRepositoryResponseList() = listOf(
 )
 
 fun stubRepositoryList() = stubRepositoryResponseList().map { it.toDomain() }
+
+fun stubDbRepositoryList() = stubRepositoryList().map { it.toDb() }
+
+fun stubRepository() = stubRepositoryList().first()
+
+fun stubDbRepository() = stubRepository().toDb()
 
 private fun stubUserSummaryResponse() = UserSummaryResponse(
     userName = "ricky_gervais",

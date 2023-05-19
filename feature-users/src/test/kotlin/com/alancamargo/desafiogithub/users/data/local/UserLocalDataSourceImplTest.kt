@@ -2,10 +2,15 @@ package com.alancamargo.desafiogithub.users.data.local
 
 import com.alancamargo.desafiogithub.core.log.Logger
 import com.alancamargo.desafiogithub.users.data.database.UserDao
+import com.alancamargo.desafiogithub.users.data.database.UserRepositoryDao
 import com.alancamargo.desafiogithub.users.data.database.UserSummaryDao
+import com.alancamargo.desafiogithub.users.testtools.stubDbRepository
+import com.alancamargo.desafiogithub.users.testtools.stubDbRepositoryList
 import com.alancamargo.desafiogithub.users.testtools.stubDbUser
 import com.alancamargo.desafiogithub.users.testtools.stubDbUserSummary
 import com.alancamargo.desafiogithub.users.testtools.stubDbUserSummaryList
+import com.alancamargo.desafiogithub.users.testtools.stubRepository
+import com.alancamargo.desafiogithub.users.testtools.stubRepositoryList
 import com.alancamargo.desafiogithub.users.testtools.stubUser
 import com.alancamargo.desafiogithub.users.testtools.stubUserSummary
 import com.alancamargo.desafiogithub.users.testtools.stubUserSummaryList
@@ -21,11 +26,13 @@ class UserLocalDataSourceImplTest {
 
     private val mockUserSummaryDao = mockk<UserSummaryDao>(relaxed = true)
     private val mockUserDao = mockk<UserDao>(relaxed = true)
+    private val mockUserRepositoryDao = mockk<UserRepositoryDao>(relaxed = true)
     private val mockLogger = mockk<Logger>(relaxed = true)
 
     private val localDataSource = UserLocalDataSourceImpl(
         mockUserSummaryDao,
         mockUserDao,
+        mockUserRepositoryDao,
         mockLogger
     )
 
@@ -204,6 +211,104 @@ class UserLocalDataSourceImplTest {
         // WHEN
         val user = stubUser()
         runBlocking { localDataSource.saveUser(user) }
+
+        // THEN
+        verify { mockLogger.error(throwable = any()) }
+    }
+
+    @Test
+    fun `when database returns user repositories getUserRepositories should return user repositories`() {
+        // GIVEN
+        coEvery {
+            mockUserRepositoryDao.selectUserRepositories(ownerUserName = any())
+        } returns stubDbRepositoryList()
+
+        // WHEN
+        val actual = runBlocking { localDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        val expected = stubRepositoryList()
+        assertThat(actual).containsExactlyElementsIn(expected)
+    }
+
+    @Test
+    fun `when database returns null getUserRepositories should return empty list`() {
+        // GIVEN
+        coEvery {
+            mockUserRepositoryDao.selectUserRepositories(ownerUserName = any())
+        } returns null
+
+        // WHEN
+        val actual = runBlocking { localDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        assertThat(actual).isEmpty()
+    }
+
+    @Test
+    fun `when database throws exception getUserRepositories should return empty list`() {
+        // GIVEN
+        coEvery {
+            mockUserRepositoryDao.selectUserRepositories(ownerUserName = any())
+        } throws Throwable()
+
+        // WHEN
+        val actual = runBlocking { localDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        assertThat(actual).isEmpty()
+    }
+
+    @Test
+    fun `when database throws exception getUserRepositories should log exception`() {
+        // GIVEN
+        coEvery {
+            mockUserRepositoryDao.selectUserRepositories(ownerUserName = any())
+        } throws Throwable()
+
+        // WHEN
+        runBlocking { localDataSource.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        verify { mockLogger.error(throwable = any()) }
+    }
+
+    @Test
+    fun `when repository exists saveRepository should update record in database`() {
+        // GIVEN
+        coEvery { mockUserRepositoryDao.getRepositoryCount(id = any()) } returns 1
+
+        // WHEN
+        val repository = stubRepository()
+        runBlocking { localDataSource.saveRepository(repository) }
+
+        // THEN
+        val expected = stubDbRepository()
+        coVerify { mockUserRepositoryDao.updateRepository(expected) }
+    }
+
+    @Test
+    fun `when repository does not exist saveRepository should insert record in database`() {
+        // GIVEN
+        coEvery { mockUserRepositoryDao.getRepositoryCount(id = any()) } returns 0
+
+        // WHEN
+        val repository = stubRepository()
+        runBlocking { localDataSource.saveRepository(repository) }
+
+        // THEN
+        val expected = stubDbRepository()
+        coVerify { mockUserRepositoryDao.insertRepository(expected) }
+    }
+
+    @Test
+    fun `when database throws exception saveRepository should log exception`() {
+        // GIVEN
+        coEvery { mockUserRepositoryDao.getRepositoryCount(id = any()) } throws Throwable()
+
+        // WHEN
+        val repository = stubRepository()
+        runBlocking { localDataSource.saveRepository(repository) }
 
         // THEN
         verify { mockLogger.error(throwable = any()) }
