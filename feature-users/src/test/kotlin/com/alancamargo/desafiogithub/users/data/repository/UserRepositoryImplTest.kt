@@ -2,6 +2,7 @@ package com.alancamargo.desafiogithub.users.data.repository
 
 import com.alancamargo.desafiogithub.users.data.local.UserLocalDataSource
 import com.alancamargo.desafiogithub.users.data.remote.UserRemoteDataSource
+import com.alancamargo.desafiogithub.users.testtools.stubRepositoryList
 import com.alancamargo.desafiogithub.users.testtools.stubUser
 import com.alancamargo.desafiogithub.users.testtools.stubUserSummaryList
 import com.google.common.truth.Truth.assertThat
@@ -117,5 +118,64 @@ class UserRepositoryImplTest {
 
         // THEN
         runBlocking { repository.getUser(userName = "user") }
+    }
+
+    @Test
+    fun `when remote data source returns user repositories getUserRepositories should return user repositories`() {
+        // GIVEN
+        val expected = stubRepositoryList()
+        coEvery {
+            mockRemoteDataSource.getUserRepositories(ownerUserName = any())
+        } returns expected
+
+        // WHEN
+        val actual = runBlocking { repository.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `when remote data source returns user repositories getUserRepositories should save user repositories in local`() {
+        // GIVEN
+        coEvery {
+            mockRemoteDataSource.getUserRepositories(ownerUserName = any())
+        } returns stubRepositoryList()
+
+        // WHEN
+        runBlocking { repository.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        coVerify { mockLocalDataSource.saveRepository(repository = any()) }
+    }
+
+    @Test
+    fun `when remote data source throws exception getUserRepositories should return user repositories from local`() {
+        // GIVEN
+        coEvery {
+            mockRemoteDataSource.getUserRepositories(ownerUserName = any())
+        } throws Throwable()
+        val expected = stubRepositoryList()
+        coEvery { mockLocalDataSource.getUserRepositories(ownerUserName = any()) } returns expected
+
+        // WHEN
+        val actual = runBlocking { repository.getUserRepositories(ownerUserName = "user") }
+
+        // THEN
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test(expected = Throwable::class)
+    fun `when remote data source throws exception and local returns empty list getUserRepositories should throw exception`() {
+        // GIVEN
+        coEvery {
+            mockRemoteDataSource.getUserRepositories(ownerUserName = any())
+        } throws Throwable()
+        coEvery {
+            mockLocalDataSource.getUserRepositories(ownerUserName = any())
+        } returns emptyList()
+
+        // THEN
+        runBlocking { repository.getUserRepositories(ownerUserName = "user") }
     }
 }

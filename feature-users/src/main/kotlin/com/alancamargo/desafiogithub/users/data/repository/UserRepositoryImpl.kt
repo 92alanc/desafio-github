@@ -1,5 +1,6 @@
 package com.alancamargo.desafiogithub.users.data.repository
 
+import com.alancamargo.desafiogithub.domain.repository.model.Repository
 import com.alancamargo.desafiogithub.domain.user.model.User
 import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 import com.alancamargo.desafiogithub.users.data.local.UserLocalDataSource
@@ -29,6 +30,18 @@ internal class UserRepositoryImpl @Inject constructor(
             }
         } catch (t: Throwable) {
             localDataSource.getUser(userName).takeUnless { it == null } ?: throw t
+        }
+    }
+
+    override suspend fun getUserRepositories(ownerUserName: String): List<Repository> {
+        return try {
+            remoteDataSource.getUserRepositories(ownerUserName).onEach {
+                localDataSource.saveRepository(it)
+            }
+        } catch (t: Throwable) {
+            localDataSource.getUserRepositories(ownerUserName).takeUnless {
+                it.isEmpty()
+            } ?: throw t
         }
     }
 }
