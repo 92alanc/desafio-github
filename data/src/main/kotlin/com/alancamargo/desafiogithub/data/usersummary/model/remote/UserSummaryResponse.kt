@@ -1,4 +1,4 @@
-package com.alancamargo.desafiogithub.data.remote
+package com.alancamargo.desafiogithub.data.usersummary.model.remote
 
 import kotlinx.serialization.SerialName
 

@@ -1,4 +1,4 @@
-package com.alancamargo.desafiogithub.domain
+package com.alancamargo.desafiogithub.domain.user.model
 
 data class User(
     val userName: String,

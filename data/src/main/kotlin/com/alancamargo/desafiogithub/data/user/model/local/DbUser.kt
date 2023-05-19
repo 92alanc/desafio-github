@@ -1,4 +1,4 @@
-package com.alancamargo.desafiogithub.data.local
+package com.alancamargo.desafiogithub.data.user.model.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

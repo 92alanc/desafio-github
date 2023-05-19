@@ -1,8 +1,9 @@
-package com.alancamargo.desafiogithub.data.local
+package com.alancamargo.desafiogithub.data.repository.model.local
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.alancamargo.desafiogithub.data.usersummary.model.local.DbUserSummary
 
 @Entity(
     tableName = "REPOSITORIES",
