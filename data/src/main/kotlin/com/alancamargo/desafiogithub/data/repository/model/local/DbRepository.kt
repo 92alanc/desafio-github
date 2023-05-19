@@ -11,7 +11,7 @@ import com.alancamargo.desafiogithub.data.usersummary.model.local.DbUserSummary
         ForeignKey(
             entity = DbUserSummary::class,
             parentColumns = ["userName"],
-            childColumns = ["ownerId"]
+            childColumns = ["ownerUserName"]
         )
     ]
 )
@@ -19,7 +19,7 @@ data class DbRepository(
     @PrimaryKey val id: Long,
     val name: String,
     val description: String,
-    val ownerId: String,
+    val ownerUserName: String,
     val starCount: Int,
     val watcherCount: Int,
     val forkCount: Int,
