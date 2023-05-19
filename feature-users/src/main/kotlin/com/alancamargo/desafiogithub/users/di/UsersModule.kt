@@ -6,6 +6,8 @@ import com.alancamargo.desafiogithub.users.data.remote.UserRemoteDataSource
 import com.alancamargo.desafiogithub.users.data.remote.UserRemoteDataSourceImpl
 import com.alancamargo.desafiogithub.users.data.repository.UserRepositoryImpl
 import com.alancamargo.desafiogithub.users.domain.repository.UserRepository
+import com.alancamargo.desafiogithub.users.domain.usecase.GetUserRepositoriesUseCase
+import com.alancamargo.desafiogithub.users.domain.usecase.GetUserRepositoriesUseCaseImpl
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUserUseCase
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUserUseCaseImpl
 import com.alancamargo.desafiogithub.users.domain.usecase.GetUsersUseCase
@@ -39,4 +41,10 @@ internal abstract class UsersModule {
     @Binds
     @ViewModelScoped
     abstract fun bindGetUserUseCase(impl: GetUserUseCaseImpl): GetUserUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindGetUserRepositoriesUseCase(
+        impl: GetUserRepositoriesUseCaseImpl
+    ): GetUserRepositoriesUseCase
 }
