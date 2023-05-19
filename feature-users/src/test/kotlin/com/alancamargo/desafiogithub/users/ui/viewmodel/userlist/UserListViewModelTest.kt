@@ -82,4 +82,16 @@ class UserListViewModelTest {
             assertThat(actions).contains(expected)
         }
     }
+
+    @Test
+    fun `onClickShowAppInfo should send ShowAppInfo action`() {
+        collector.test { _, actions ->
+            // WHEN
+            viewModel.onClickShowAppInfo()
+
+            // THEN
+            val expected = UserListViewAction.ShowAppInfo
+            assertThat(actions).contains(expected)
+        }
+    }
 }
