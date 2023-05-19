@@ -9,6 +9,7 @@ import com.alancamargo.desafiogithub.users.ui.model.UserListError
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
@@ -68,6 +69,18 @@ class UserListViewModelTest {
             )
             assertThat(states).containsAtLeastElementsIn(expected)
         }
+    }
+
+    @Test
+    fun `when use case throws exception getUsers should log exception`() {
+        // GIVEN
+        every { mockGetUsersUseCase() } returns flow { throw Throwable() }
+
+        // WHEN
+        viewModel.getUsers()
+
+        // THEN
+        verify { mockLogger.error(throwable = any()) }
     }
 
     @Test
