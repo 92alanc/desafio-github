@@ -49,18 +49,15 @@ class UserRemoteDataSourceImplTest {
         assertThat(actual).isEmpty()
     }
 
-    @Test
-    fun `when api responds with error getUsers should return empty list`() {
+    @Test(expected = Throwable::class)
+    fun `when api responds with error getUsers should throw exception`() {
         // GIVEN
         coEvery {
             mockApi.getUsers()
         } returns Response.error(404, "".toResponseBody())
 
-        // WHEN
-        val actual = runBlocking { remoteDataSource.getUsers() }
-
         // THEN
-        assertThat(actual).isEmpty()
+        runBlocking { remoteDataSource.getUsers() }
     }
 
     @Test
@@ -146,17 +143,14 @@ class UserRemoteDataSourceImplTest {
         assertThat(actual).isEmpty()
     }
 
-    @Test
+    @Test(expected = Throwable::class)
     fun `when api responds with error getUserRepositories should return empty list`() {
         // GIVEN
         coEvery {
             mockApi.getUserRepositories(ownerUserName = any())
         } returns Response.error(404, "".toResponseBody())
 
-        // WHEN
-        val actual = runBlocking { remoteDataSource.getUserRepositories(ownerUserName = "user") }
-
         // THEN
-        assertThat(actual).isEmpty()
+        runBlocking { remoteDataSource.getUserRepositories(ownerUserName = "user") }
     }
 }

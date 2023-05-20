@@ -22,7 +22,7 @@ internal class UserRemoteDataSourceImpl @Inject constructor(
                 it.toDomain()
             } ?: emptyList()
         } else {
-            emptyList()
+            throw Throwable()
         }
     }
 
@@ -47,7 +47,7 @@ internal class UserRemoteDataSourceImpl @Inject constructor(
                 it.toDomain()
             } ?: emptyList()
         } else {
-            emptyList()
+            throw Throwable()
         }
     }
 }

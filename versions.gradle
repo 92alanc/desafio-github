@@ -9,7 +9,7 @@ ext {
     android_material_version = '1.9.0'
     android_test_runner_version = '1.5.2'
     circle_image_view_version = '3.1.0'
-    coil_version = '2.2.2'
+    coil_version = '2.3.0'
     coroutines_test_version = '1.7.1'
     hilt_version = '2.46.1'
     java_version = JavaVersion.VERSION_17
