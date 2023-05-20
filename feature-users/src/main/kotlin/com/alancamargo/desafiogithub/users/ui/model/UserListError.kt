@@ -2,6 +2,8 @@ package com.alancamargo.desafiogithub.users.ui.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import com.alancamargo.desafiogithub.users.R
+import com.alancamargo.desafiogithub.core.design.R as R2
 
 internal enum class UserListError(
     @DrawableRes val icon: Int,
@@ -9,17 +11,17 @@ internal enum class UserListError(
 ) {
 
     NO_RESULTS(
-        icon = 0,
-        message = 0
+        icon = R2.drawable.ic_no_results_error,
+        message = R.string.message_no_users_found
     ),
 
     NETWORK_ERROR(
-        icon = 0,
-        message = 0
+        icon = R2.drawable.ic_network_error,
+        message = R2.string.message_network_error
     ),
 
     GENERIC_ERROR(
-        icon = 0,
-        message = 0
+        icon = R2.drawable.ic_generic_error,
+        message = R2.string.message_generic_error
     )
 }

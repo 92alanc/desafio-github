@@ -2,4 +2,7 @@
 <resources>
     <string name="language_format">Linguagem: %s</string>
     <string name="repositories">Repositórios</string>
+    <string name="message_no_users_found">Nenhum usuário encontrado</string>
+    <string name="message_user_not_found">Usuário não encontrado</string>
+    <string name="message_no_repositories_found">Nenhum repositório encontrado</string>
 </resources>

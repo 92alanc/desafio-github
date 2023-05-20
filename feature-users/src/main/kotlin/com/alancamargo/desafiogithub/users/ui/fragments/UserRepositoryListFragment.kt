@@ -42,17 +42,32 @@ internal class UserRepositoryListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = adapter
+        setUpUi()
         observeViewModelFlow(viewModel.state, ::onStateChanged)
         viewModel.getUserRepositories(args.ownerUserName)
     }
 
+    private fun setUpUi() {
+        with(binding) {
+            recyclerView.adapter = adapter
+            error.btTryAgain.setOnClickListener {
+                viewModel.getUserRepositories(args.ownerUserName)
+            }
+        }
+    }
+
     private fun onStateChanged(state: UserRepositoryListViewState) {
         with(state) {
-            // TODO: handle loading and error
-
+            binding.shimmerContainer.isVisible = isLoading
+            binding.error.root.isVisible = error != null
             binding.recyclerView.isVisible = repositories != null
+
             repositories?.let(adapter::submitList)
+
+            error?.let {
+                binding.error.icon.setImageResource(it.icon)
+                binding.error.txtMessage.setText(it.message)
+            }
         }
     }
 
