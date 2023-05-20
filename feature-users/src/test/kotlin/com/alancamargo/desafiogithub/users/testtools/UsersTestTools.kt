@@ -55,9 +55,6 @@ fun stubRepositoryResponseList() = listOf(
         name = "the-office",
         description = "First edition of The Office",
         owner = stubUserSummaryResponse(),
-        starCount = 5,
-        watcherCount = 999,
-        forkCount = 3,
         language = "Kotlin"
     )
 )
