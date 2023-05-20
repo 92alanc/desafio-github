@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
-    android:layout_width="@dimen/repository_item_width"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/radius_default"
     app:cardUseCompatPadding="true">
@@ -59,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_8"
             android:layout_marginStart="@dimen/spacing_8"
+            android:gravity="end"
             android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/txtDescription"

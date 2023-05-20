@@ -1,94 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/shimmer2"
-        app:layout_constraintHorizontal_chainStyle="spread_inside">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <View
-            android:layout_width="@dimen/repository_item_width"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/shimmer1"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_marginTop="@dimen/spacing_8">
         <View
-            android:layout_width="@dimen/repository_item_width"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_8"
-        app:layout_constraintTop_toBottomOf="@id/shimmer1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/shimmer4"
-        app:layout_constraintHorizontal_chainStyle="spread_inside">
+        android:layout_marginTop="@dimen/spacing_8">
         <View
-            android:layout_width="@dimen/repository_item_width"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_8"
-        app:layout_constraintTop_toBottomOf="@id/shimmer2"
-        app:layout_constraintStart_toEndOf="@id/shimmer3"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_marginTop="@dimen/spacing_8">
         <View
-            android:layout_width="@dimen/repository_item_width"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_8"
-        app:layout_constraintTop_toBottomOf="@id/shimmer3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/shimmer6"
-        app:layout_constraintHorizontal_chainStyle="spread_inside">
-        <View
-            android:layout_width="@dimen/repository_item_width"
-            android:layout_height="100dp"
-            android:background="@drawable/shape_shimmer"/>
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_8"
-        app:layout_constraintTop_toBottomOf="@id/shimmer4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/shimmer5"
-        app:layout_constraintEnd_toEndOf="parent">
-        <View
-            android:layout_width="@dimen/repository_item_width"
-            android:layout_height="100dp"
-            android:background="@drawable/shape_shimmer"/>
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

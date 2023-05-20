@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_8"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="2"
         app:layout_constraintTop_toBottomOf="@id/txtRepositories"
         app:layout_constraintBottom_toBottomOf="parent"
