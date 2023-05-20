@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="@dimen/repository_item_width"
-    android:layout_height="@dimen/repository_item_height"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/radius_default"
     app:cardUseCompatPadding="true">
 

@@ -49,6 +49,7 @@ dependencies {
     implementation "$android_appcompat"
     implementation "$android_fragment"
     implementation "$android_material"
+    implementation "$circle_image_view"
     implementation "$hilt_android"
     implementation "$room"
     implementation "$shimmer"
