@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.alancamargo.desafiogithub.domain.usersummary.model.UserSummary
 import com.alancamargo.desafiogithub.users.databinding.ItemUserSummaryBinding
 
-internal class UserSummaryAdapter : ListAdapter<UserSummary, UserSummaryViewHolder>(
-    UserSummaryDiffCallback
-) {
+internal class UserSummaryAdapter(
+    private val onItemClick: (UserSummary) -> Unit
+) : ListAdapter<UserSummary, UserSummaryViewHolder>(UserSummaryDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserSummaryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemUserSummaryBinding.inflate(inflater, parent, false)
-        return UserSummaryViewHolder(binding)
+        return UserSummaryViewHolder(binding, onItemClick)
     }
 
     override fun onBindViewHolder(holder: UserSummaryViewHolder, position: Int) {

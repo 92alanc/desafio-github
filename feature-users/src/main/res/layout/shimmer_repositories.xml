@@ -14,7 +14,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside">
         <View
             android:layout_width="@dimen/repository_item_width"
-            android:layout_height="@dimen/repository_item_height"
+            android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent">
         <View
             android:layout_width="@dimen/repository_item_width"
-            android:layout_height="@dimen/repository_item_height"
+            android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside">
         <View
             android:layout_width="@dimen/repository_item_width"
-            android:layout_height="@dimen/repository_item_height"
+            android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent">
         <View
             android:layout_width="@dimen/repository_item_width"
-            android:layout_height="@dimen/repository_item_height"
+            android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside">
         <View
             android:layout_width="@dimen/repository_item_width"
-            android:layout_height="@dimen/repository_item_height"
+            android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent">
         <View
             android:layout_width="@dimen/repository_item_width"
-            android:layout_height="@dimen/repository_item_height"
+            android:layout_height="100dp"
             android:background="@drawable/shape_shimmer"/>
     </com.facebook.shimmer.ShimmerFrameLayout>
 

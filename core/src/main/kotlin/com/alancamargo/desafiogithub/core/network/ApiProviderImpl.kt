@@ -1,7 +1,6 @@
 package com.alancamargo.desafiogithub.core.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -13,12 +12,14 @@ import javax.inject.Inject
 
 private const val TIMEOUT_SECONDS = 10L
 
-@OptIn(ExperimentalSerializationApi::class)
 internal class ApiProviderImpl @Inject constructor(
     private val baseUrl: String
 ) : ApiProvider {
 
-    private val json = Json { ignoreUnknownKeys = true }
+    private val json = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    }
 
     override fun <T> provideService(clazz: Class<T>): T {
         val converterFactory = getConverterFactory()

@@ -11,4 +11,6 @@
     <string name="public_gists_format">Gists públicos: %d</string>
     <string name="followers_format">Seguidores: %d</string>
     <string name="following_format">Seguindo: %d</string>
+    <string name="app_info_label">Sobre o aplicativo</string>
+    <string name="app_info">Aplicativo desenvolvido por Alan Camargo</string>
 </resources>
