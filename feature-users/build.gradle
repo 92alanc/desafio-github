@@ -50,6 +50,7 @@ dependencies {
     implementation "$android_fragment"
     implementation "$android_material"
     implementation "$circle_image_view"
+    implementation "$coil"
     implementation "$hilt_android"
     implementation "$room"
     implementation "$shimmer"

@@ -37,7 +37,6 @@ android {
 
 dependencies {
     implementation "$android_material"
-    implementation "$coil"
     implementation "$hilt_android"
 
     kapt "$hilt_compiler"
