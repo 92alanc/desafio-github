@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_format">Linguagem: %s</string>
+    <string name="repositories">Repositórios</string>
+    <string name="message_no_users_found">Nenhum usuário encontrado</string>
+    <string name="message_user_not_found">Usuário não encontrado</string>
+    <string name="message_no_repositories_found">Nenhum repositório encontrado</string>
+    <string name="user_details">Detalhes do usuário</string>
+    <string name="location_format">Localidade: %s</string>
+    <string name="public_repositories_format">Repositórios públicos: %d</string>
+    <string name="public_gists_format">Gists públicos: %d</string>
+    <string name="followers_format">Seguidores: %d</string>
+    <string name="following_format">Seguindo: %d</string>
+    <string name="app_info_label">Sobre o aplicativo</string>
+    <string name="app_info">Aplicativo desenvolvido por Alan Camargo</string>
+    <string name="search">Buscar</string>
+</resources>

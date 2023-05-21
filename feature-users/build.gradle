@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.library'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.alancamargo.desafiogithub.users'
+    compileSdk target_sdk_version
+
+    defaultConfig {
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+
+        testInstrumentationRunner "com.alancamargo.desafiogithub.core.test.runner.InstrumentedTestRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility java_version
+        targetCompatibility java_version
+    }
+
+    kotlinOptions {
+        jvmTarget = "$java_version"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    sourceSets {
+        debug {
+            assets {
+                srcDirs 'src/debug/assets', 'src/androidTest/assets'
+            }
+        }
+    }
+
+    testOptions {
+        animationsDisabled true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(':core-design')
+    implementation project(':domain')
+    implementation project(':data')
+    implementation project(':navigation')
+
+    implementation "$android_activity"
+    implementation "$android_appcompat"
+    implementation "$android_fragment"
+    implementation "$android_material"
+    implementation "$circle_image_view"
+    implementation "$coil"
+    implementation "$hilt_android"
+    implementation "$room"
+    implementation "$shimmer"
+
+    kapt "$hilt_compiler"
+    kapt "$room_compiler"
+
+    testImplementation project(':core-test')
+
+    testImplementation "$coroutines_test"
+    testImplementation "$junit"
+    testImplementation "$mockk_android"
+    testImplementation "$truth"
+    testImplementation "$turbine"
+
+    androidTestImplementation project(':core-test')
+
+    androidTestImplementation "$android_espresso_core"
+    androidTestImplementation "$android_fragment_testing"
+    androidTestImplementation "$mockk_android"
+
+    kaptAndroidTest "$hilt_compiler"
+}

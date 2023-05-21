@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Desafio GitHub</string>
+    <string name="message_network_error">Parece que você está desconectado. Verifique sua conexão com a internet e tente novamente</string>
+    <string name="message_generic_error">Algo deu errado. Tente novamente mais tarde</string>
+    <string name="try_again">Tentar de novo</string>
+    <string name="ok">OK</string>
+</resources>

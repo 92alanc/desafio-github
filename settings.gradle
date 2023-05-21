@@ -17,3 +17,10 @@ dependencyResolutionManagement {
 rootProject.name = "Desafio GitHub"
 
 include ':app'
+include ':core-design'
+include ':core'
+include ':core-test'
+include ':navigation'
+include ':domain'
+include ':data'
+include ':feature-users'
