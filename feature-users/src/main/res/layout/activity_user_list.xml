@@ -15,8 +15,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="@string/app_name"/>
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:menu="@menu/menu_user_list"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout

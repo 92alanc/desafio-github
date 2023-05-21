@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import com.alancamargo.desafiogithub.core.design.tools.DialogueHelper
 import com.alancamargo.desafiogithub.core.extensions.observeViewModelFlow
@@ -12,6 +13,7 @@ import com.alancamargo.desafiogithub.navigation.UserDetailsActivityNavigation
 import com.alancamargo.desafiogithub.users.R
 import com.alancamargo.desafiogithub.users.databinding.ActivityUserListBinding
 import com.alancamargo.desafiogithub.users.ui.adapter.usersummary.UserSummaryAdapter
+import com.alancamargo.desafiogithub.users.ui.tools.SearchQueryListener
 import com.alancamargo.desafiogithub.users.ui.viewmodel.userlist.UserListViewAction
 import com.alancamargo.desafiogithub.users.ui.viewmodel.userlist.UserListViewModel
 import com.alancamargo.desafiogithub.users.ui.viewmodel.userlist.UserListViewState
@@ -36,6 +38,8 @@ internal class UserListActivity : AppCompatActivity() {
     @Inject
     lateinit var dialogueHelper: DialogueHelper
 
+    private var searchView: SearchView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityUserListBinding.inflate(layoutInflater)
@@ -47,7 +51,10 @@ internal class UserListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_user_details, menu)
+        menuInflater.inflate(R.menu.menu_user_list, menu)
+        searchView = (menu.findItem(R.id.item_search)?.actionView as SearchView).apply {
+            queryHint = getString(R.string.search)
+        }
         return true
     }
 
@@ -78,7 +85,11 @@ internal class UserListActivity : AppCompatActivity() {
             binding.error.root.isVisible = error != null
             binding.recyclerView.isVisible = users != null
 
-            users?.let(adapter::submitList)
+            users?.let {
+                adapter.submitList(it)
+                val listener = SearchQueryListener(viewModel::searchUser)
+                searchView?.setOnQueryTextListener(listener)
+            }
 
             error?.let {
                 binding.error.icon.setImageResource(it.icon)

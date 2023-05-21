@@ -97,6 +97,21 @@ class UserListViewModelTest {
     }
 
     @Test
+    fun `searchUser should send OpenUserDetails action`() {
+        collector.test { _, actions ->
+            // GIVEN
+            val userName = "92alanc"
+
+            // WHEN
+            viewModel.searchUser(userName)
+
+            // THEN
+            val expected = UserListViewAction.OpenUserDetails(userName)
+            assertThat(actions).contains(expected)
+        }
+    }
+
+    @Test
     fun `onClickShowAppInfo should send ShowAppInfo action`() {
         collector.test { _, actions ->
             // WHEN
