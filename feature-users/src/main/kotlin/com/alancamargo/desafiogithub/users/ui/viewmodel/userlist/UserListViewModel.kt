@@ -53,6 +53,12 @@ internal class UserListViewModel @Inject constructor(
         }
     }
 
+    fun searchUser(userName: String) {
+        viewModelScope.launch(dispatcher) {
+            _action.emit(UserListViewAction.OpenUserDetails(userName))
+        }
+    }
+
     fun onClickShowAppInfo() {
         viewModelScope.launch(dispatcher) {
             _action.emit(UserListViewAction.ShowAppInfo)

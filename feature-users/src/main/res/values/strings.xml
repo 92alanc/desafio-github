@@ -13,4 +13,5 @@
     <string name="following_format">Seguindo: %d</string>
     <string name="app_info_label">Sobre o aplicativo</string>
     <string name="app_info">Aplicativo desenvolvido por Alan Camargo</string>
+    <string name="search">Buscar</string>
 </resources>

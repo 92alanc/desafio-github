@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object LogModule {
+internal object LogModule {
 
     @Provides
     @Singleton
