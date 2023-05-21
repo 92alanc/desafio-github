@@ -5,6 +5,9 @@
     <application android:usesCleartextTraffic="true">
         <activity android:name=".ui.UserListActivity"
             android:theme="@style/DebugTheme"/>
+
+        <activity android:name=".ui.FragmentTestActivity"
+            android:theme="@style/DebugTheme"/>
     </application>
 
 </manifest>

@@ -1,6 +1,6 @@
 package com.alancamargo.desafiogithub.users.ui.robots.userlist
 
-import androidx.test.core.app.ActivityScenario
+import com.alancamargo.desafiogithub.core.test.ui.launchActivityWithPrecondition
 import com.alancamargo.desafiogithub.core.test.web.delayWebResponse
 import com.alancamargo.desafiogithub.core.test.web.disconnect
 import com.alancamargo.desafiogithub.core.test.web.mockWebError
@@ -16,26 +16,26 @@ internal fun UserListActivityTest.given(
 internal class UserListActivityRobot(private val testSuite: UserListActivityTest) {
 
     fun launchWithSuccess() {
-        launchWithPrecondition {
+        launchActivityWithPrecondition<UserListActivity> {
             mockWebResponse(jsonAssetPath = "users.json")
         }
     }
 
     fun launchWithDelayedWebResponse() {
-        launchWithPrecondition {
+        launchActivityWithPrecondition<UserListActivity> {
             delayWebResponse()
         }
     }
 
     fun launchDisconnected() {
-        launchWithPrecondition {
+        launchActivityWithPrecondition<UserListActivity> {
             disconnect()
         }
     }
 
     fun launchWithGenericError() {
-        launchWithPrecondition {
-            mockWebError(HttpURLConnection.HTTP_NOT_FOUND)
+        launchActivityWithPrecondition<UserListActivity> {
+            mockWebError(HttpURLConnection.HTTP_INTERNAL_ERROR)
         }
     }
 
@@ -49,14 +49,5 @@ internal class UserListActivityRobot(private val testSuite: UserListActivityTest
         assertion: UserListAssertionRobot.() -> Unit
     ): UserListAssertionRobot {
         return UserListAssertionRobot(testSuite).apply(assertion)
-    }
-
-    private fun launchWithPrecondition(beforeLaunch: () -> Unit) {
-        beforeLaunch()
-        launch()
-    }
-
-    private fun launch() {
-        ActivityScenario.launch(UserListActivity::class.java)
     }
 }
