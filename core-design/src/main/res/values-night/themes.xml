@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.DesafioGitHub" parent="Theme.Material3.DayNight">
+    <style name="Theme.DesafioGitHub" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>

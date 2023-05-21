@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="repository_item_width">200dp</dimen>
+    <dimen name="user_details_profile_picture_size">80dp</dimen>
+    <dimen name="user_summary_profile_picture_size">40dp</dimen>
+</resources>
