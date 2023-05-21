@@ -4,6 +4,7 @@ import com.alancamargo.desafiogithub.core.design.di.CoreDesignModule
 import com.alancamargo.desafiogithub.core.design.tools.DialogueHelper
 import com.alancamargo.desafiogithub.core.di.BaseUrl
 import com.alancamargo.desafiogithub.core.di.BaseUrlModule
+import com.alancamargo.desafiogithub.core.di.IoDispatcher
 import com.alancamargo.desafiogithub.core.test.web.mockWebServer
 import com.alancamargo.desafiogithub.navigation.UserDetailsActivityNavigation
 import dagger.Module
@@ -11,7 +12,7 @@ import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import io.mockk.mockk
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import javax.inject.Singleton
 
@@ -39,7 +40,9 @@ internal object UsersTestModule {
     @Provides
     @Singleton
     @BaseUrl
-    fun provideMockBaseUrl(): String = runBlocking(Dispatchers.IO) {
-        mockWebServer.url("/").toString()
+    fun provideMockBaseUrl(@IoDispatcher dispatcher: CoroutineDispatcher): String {
+        return runBlocking(dispatcher) {
+            mockWebServer.url("/").toString()
+        }
     }
 }
