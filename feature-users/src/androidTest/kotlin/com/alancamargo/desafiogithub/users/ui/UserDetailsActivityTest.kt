@@ -1,6 +1,6 @@
-package com.alancamargo.desafiogithub.users.ui.fragments
+package com.alancamargo.desafiogithub.users.ui
 
-import com.alancamargo.desafiogithub.users.ui.robots.repositories.given
+import com.alancamargo.desafiogithub.users.ui.robots.userdetails.given
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -8,7 +8,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @HiltAndroidTest
-internal class UserRepositoryListFragmentTest {
+internal class UserDetailsActivityTest {
 
     @get:Rule
     val hiltAndroidRule = HiltAndroidRule(this)
@@ -28,11 +28,11 @@ internal class UserRepositoryListFragmentTest {
     }
 
     @Test
-    fun withSuccess_shouldShowCorrectNumberOfRepositories() {
+    fun withSuccess_shouldShowUserDetails() {
         given {
             launchWithSuccess()
         } then {
-            repositoryCountIs(count = 5)
+            showUserDetails()
         }
     }
 

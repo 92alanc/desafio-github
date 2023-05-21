@@ -50,6 +50,13 @@ internal class UserRepositoryListFragmentRobot {
         }
     }
 
+    infix fun then(
+        assertion: UserRepositoryListAssertionRobot.() -> Unit
+    ): UserRepositoryListAssertionRobot {
+        Thread.sleep(200) // Tests won't pass consistently without this
+        return UserRepositoryListAssertionRobot().apply(assertion)
+    }
+
     private inline fun <reified F : Fragment> launchFragmentWithPrecondition(
         args: Parcelable,
         beforeLaunch: () -> Unit
@@ -81,12 +88,5 @@ internal class UserRepositoryListFragmentRobot {
                 add(android.R.id.content, fragment, "")
             }
         }
-    }
-
-    infix fun then(
-        assertion: UserRepositoryListAssertionRobot.() -> Unit
-    ): UserRepositoryListAssertionRobot {
-        Thread.sleep(200)
-        return UserRepositoryListAssertionRobot().apply(assertion)
     }
 }

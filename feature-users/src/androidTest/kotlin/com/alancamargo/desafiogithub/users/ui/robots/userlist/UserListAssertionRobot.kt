@@ -34,7 +34,7 @@ internal class UserListAssertionRobot(private val testSuite: UserListActivityTes
     }
 
     fun showShimmer() {
-        assertViewIsDisplayed(R.id.shimmer1)
+        assertViewIsDisplayed(R.id.shimmerContainer)
     }
 
     fun showNetworkError() {
